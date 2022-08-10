@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import store from "./modules";
+import { Provider } from "react-redux/es/exports";
+import { Link, BrowserRouter, Route, Routes } from "react-router-dom";
+import PostsPage from './pages/posts';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+      <Link to="/">Posts</Link> |
+      <Link to="/*">Temp</Link>
+        <Routes>
+          <Route path="/" element={<PostsPage />} />
+          <Route path="/*" element={<p>Not Found</p>} />
+        </Routes>
+      </BrowserRouter>
+      </Provider>
   );
 }
 
